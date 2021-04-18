@@ -14,16 +14,22 @@
         android:layout_height="wrap_content"
         android:text="@string/greetings" />
 
-    <TextView
-        android:id="@+id/counter_text"
+    <Button
+        android:id="@+id/characters_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/counter" />
+        android:text="@string/characters_btn_txt"
+        android:onClick="openCharacterList"/>
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/episodes_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/click_me"
-        android:onClick="incrementCounter"/>
+        android:text="@string/episodes_btn_txt" />
+
+    <Button
+        android:id="@+id/random_quote_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/r_quote_btn_txt" />
 </LinearLayout>
