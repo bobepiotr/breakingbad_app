@@ -6,7 +6,7 @@
     <string name="r_quote_btn_txt">Random quote</string>
     <string name="episodes_btn_txt">Episodes</string>
     <string name="characters_btn_txt">Characters</string>
-    <string name="title_activity_character_list">CharacterList</string>
+    <string name="title_activity_character_list">Characters</string>
     <!--
     This string is used for square devices and overridden by hello_world in
     values-round/strings.xml for round devices.
