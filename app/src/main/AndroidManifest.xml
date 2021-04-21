@@ -5,25 +5,17 @@
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.INTERNET" />
 
-
-    <uses-feature android:name="android.hardware.type.watch" />
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Bb_app">
+        android:theme="@style/AppTheme">
         <activity
             android:name=".CharacterList"
             android:label="@string/title_activity_character_list">
         </activity>
-
-        <!--
-               Set to true if your app is Standalone, that is, it does not require the handheld
-               app to run.
-        -->
 
         <activity android:name=".MainActivity">
             <intent-filter>
