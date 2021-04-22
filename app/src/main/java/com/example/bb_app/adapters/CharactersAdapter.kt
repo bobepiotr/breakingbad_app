@@ -11,7 +11,8 @@ import com.example.bb_app.models.Character
 
 class CharactersAdapter(
     private val characters: List<Character>
-                        ): RecyclerView.Adapter<CustomViewHolder>() {
+                        ): RecyclerView.Adapter<CharactersAdapter.CustomViewHolder>() {
+    private lateinit var clickListener: ClickListener
 
     override fun getItemCount(): Int {
         return characters.size
@@ -30,17 +31,29 @@ class CharactersAdapter(
 
         holder.nameText.text = character.name
         holder.nicknameText.text = nickname
+        holder.view.setOnClickListener(View.OnClickListener {
+            clickListener.onItemClick(position)
+        })
     }
-}
 
-class CustomViewHolder(view: View): RecyclerView.ViewHolder(view) {
-    val nameText: TextView
-    val nicknameText: TextView
-    val avatar: ImageView
+    fun setOnItemClickListener(listener: ClickListener) {
+        this.clickListener = listener
+    }
 
-    init {
-        nameText = view.findViewById<TextView>(R.id.name_text)
-        nicknameText = view.findViewById<TextView>(R.id.nickname_text)
-        avatar = view.findViewById<ImageView>(R.id.character_avatar)
+    class CustomViewHolder(val view: View): RecyclerView.ViewHolder(view) {
+        val nameText: TextView
+        val nicknameText: TextView
+        val avatar: ImageView
+
+        init {
+            nameText = view.findViewById(R.id.name_text)
+            nicknameText = view.findViewById(R.id.nickname_text)
+            avatar = view.findViewById(R.id.character_avatar)
+        }
+    }
+
+    interface ClickListener {
+        fun onItemClick(position: Int)
+        //fun onLongItemClick(position: Int, view: View?)
     }
 }
