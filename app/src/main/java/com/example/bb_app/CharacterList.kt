@@ -54,7 +54,7 @@ class CharacterList : AppCompatActivity() {
     }
 
     fun drawCharacter(view: View) {
-        Toast.makeText(applicationContext, "Drawing ne", Toast.LENGTH_SHORT).show()
+        Toast.makeText(applicationContext, "Tmp... random character...", Toast.LENGTH_SHORT).show()
     }
 
 
