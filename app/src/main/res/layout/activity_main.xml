@@ -55,7 +55,10 @@
         android:textSize="35sp"
         android:textColor="@color/white"
         android:textAllCaps="false"
-        android:layout_marginTop="20dp" />
+        android:layout_marginTop="20dp"
+        android:drawableLeft="@drawable/heisenberg"
+        android:paddingLeft="20dp"
+        android:textAlignment="viewStart"/>
 
     <Button
         android:id="@+id/episodes_button"
