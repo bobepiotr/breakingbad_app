@@ -1,6 +1,7 @@
 package com.example.bb_app
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -40,6 +41,12 @@ class CharacterList : AppCompatActivity() {
 
                 runOnUiThread {
                     recyclerView?.adapter = CharactersAdapter(characters.toList())
+
+                    (recyclerView?.adapter as CharactersAdapter).setOnItemClickListener(object:CharactersAdapter.ClickListener{
+                        override fun onItemClick(position: Int) {
+                            Toast.makeText(applicationContext, "Temporary message, item $position", Toast.LENGTH_SHORT).show()
+                        }
+                    })
                 }
             }
         })
