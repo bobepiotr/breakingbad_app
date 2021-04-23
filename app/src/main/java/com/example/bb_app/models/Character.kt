@@ -1,4 +1,6 @@
 package com.example.bb_app.models
+import java.io.Serializable
+
 /*[{"char_id":1,
 "name":"Walter White",
 "birthday":"09-07-1958",
