@@ -23,6 +23,7 @@ class CharacterDetails : AppCompatActivity() {
         val characterImage: ImageView = findViewById(R.id.ch_photo_img)
         val characterName: TextView = findViewById(R.id.ch_name_desc)
         val characterNickname: TextView = findViewById(R.id.ch_nickname_desc)
+        val characterPortrayed: TextView = findViewById(R.id.ch_portrayed_desc)
         val characterBorn: TextView = findViewById(R.id.ch_born_desc)
         val characterOccupation: TextView = findViewById(R.id.ch_occupation_desc)
         val characterStatus: ImageView = findViewById(R.id.ch_status_img)
@@ -30,6 +31,7 @@ class CharacterDetails : AppCompatActivity() {
         Picasso.get().load(character.img).into(characterImage)
         characterName.text = character.name
         characterNickname.text = character.nickname
+        characterPortrayed.text = character.portrayed
         characterBorn.text = character.birthday
         characterOccupation.text = occupationListToString(character.occupation)
         characterStatus.setImageResource(getStatusDrawableId(character.status))
