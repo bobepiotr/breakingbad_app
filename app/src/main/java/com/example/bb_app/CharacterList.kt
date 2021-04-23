@@ -1,5 +1,6 @@
 package com.example.bb_app
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -7,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bb_app.adapters.CharactersAdapter
+import com.example.bb_app.const.Const
 import com.example.bb_app.models.Character
 import com.google.gson.GsonBuilder
 import okhttp3.*
@@ -45,7 +47,11 @@ class CharacterList : AppCompatActivity() {
 
                     (recyclerView?.adapter as CharactersAdapter).setOnItemClickListener(object:CharactersAdapter.ClickListener{
                         override fun onItemClick(position: Int) {
-                            Toast.makeText(applicationContext, "Temporary message, item $position", Toast.LENGTH_SHORT).show()
+                            val intent: Intent = Intent(applicationContext, CharacterDetails::class.java)
+                            val bundle: Bundle = Bundle()
+                            bundle.putSerializable(Const.CHARACTER_KEY, characters[position])
+                            intent.putExtras(bundle)
+                            startActivity(intent)
                         }
                     })
                 }
