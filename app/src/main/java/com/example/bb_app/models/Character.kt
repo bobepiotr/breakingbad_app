@@ -1,6 +1,5 @@
 package com.example.bb_app.models
-
-import android.provider.ContactsContract
+import java.io.Serializable
 
 /*[{"char_id":1,
 "name":"Walter White",
@@ -18,11 +17,11 @@ class Character(
     val char_id: Int,
     val name: String,
     val birthday: String,
-    val occupation: Array<String>,
+    val occupation: List<String>,
     val img: String,
     val status: String,
     val nickname: String,
-    val appearance: Array<Int>,
+    val appearance: List<Int>,
     val portrayed: String,
     val category: String
-)
+): Serializable
