@@ -90,7 +90,6 @@ class CharacterList : AppCompatActivity() {
         }
         //"birthday":"1958-09-07T00:00:00.000Z"
         else if (ch.birthday.length > 9) {
-            val list: List<Int> = listOf(1,2,3,4)
             return Character(ch.char_id, ch.name, ch.birthday.substring(0, 10), ch.occupation,
                     ch.img, ch.status, ch.nickname,
                     ch.appearance, ch.portrayed, ch.category)
