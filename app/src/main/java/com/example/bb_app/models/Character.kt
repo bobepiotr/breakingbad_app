@@ -13,15 +13,15 @@ import java.io.Serializable
 "category":"Breaking Bad",
 "better_call_saul_appearance":[]}]*/
 
-class Character(
-    val char_id: Int,
-    val name: String,
-    val birthday: String,
-    val occupation: List<String>,
-    val img: String,
-    val status: String,
-    val nickname: String,
-    val appearance: List<Int>,
-    val portrayed: String,
-    val category: String
+data class Character(
+        val char_id: Int,
+        val name: String,
+        val birthday: String,
+        val occupation: List<String>,
+        val img: String,
+        val status: String,
+        val nickname: String,
+        val appearance: List<Int>,
+        val portrayed: String,
+        val category: String
 ): Serializable

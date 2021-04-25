@@ -3,7 +3,6 @@ package com.example.bb_app
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -44,14 +43,9 @@ class CharacterList : AppCompatActivity() {
 
                 runOnUiThread {
                     recyclerView?.adapter = CharactersAdapter(characters.toList())
-
                     (recyclerView?.adapter as CharactersAdapter).setOnItemClickListener(object:CharactersAdapter.ClickListener{
                         override fun onItemClick(position: Int) {
-                            val intent: Intent = Intent(applicationContext, CharacterDetails::class.java)
-                            val bundle: Bundle = Bundle()
-                            bundle.putSerializable(Const.CHARACTER_KEY, characters[position])
-                            intent.putExtras(bundle)
-                            startActivity(intent)
+                            openDetailsActivity(characters[position])
                         }
                     })
                 }
@@ -60,8 +54,49 @@ class CharacterList : AppCompatActivity() {
     }
 
     fun drawCharacter(view: View) {
-        Toast.makeText(applicationContext, "Tmp... random character...", Toast.LENGTH_SHORT).show()
+        val request = Request.Builder()
+                .url("https://www.breakingbadapi.com/api/character/random")
+                .build()
+
+        client.newCall(request).enqueue(object : Callback {
+            override fun onFailure(call: Call, e: IOException) {}
+            override fun onResponse(call: Call, response: Response) {
+                val body = response.body()?.string()
+                val gson = GsonBuilder().create()
+                val characters: Array<Character> = gson.fromJson(
+                        body,
+                        Array<Character>::class.java
+                )
+                runOnUiThread {
+                    openDetailsActivity(fixCharacter(characters[0]))
+                }
+            }
+        })
     }
 
+    private fun openDetailsActivity(character: Character) {
+        val intent: Intent = Intent(applicationContext, CharacterDetails::class.java)
+        val bundle: Bundle = Bundle()
+        bundle.putSerializable(Const.CHARACTER_KEY, character)
+        intent.putExtras(bundle)
+        startActivity(intent)
+    }
 
+    private fun fixCharacter(ch: Character): Character {
+        if (ch.birthday.isNullOrEmpty()) {
+            return Character(ch.char_id, ch.name, "Unknown", ch.occupation,
+                    ch.img, ch.status, ch.nickname,
+                    ch.appearance, ch.portrayed, ch.category)
+        }
+        //"birthday":"1958-09-07T00:00:00.000Z"
+        else if (ch.birthday.length > 9) {
+            val list: List<Int> = listOf(1,2,3,4)
+            return Character(ch.char_id, ch.name, ch.birthday.substring(0, 10), ch.occupation,
+                    ch.img, ch.status, ch.nickname,
+                    ch.appearance, ch.portrayed, ch.category)
+        }
+        else {
+            return ch
+        }
+    }
 }
