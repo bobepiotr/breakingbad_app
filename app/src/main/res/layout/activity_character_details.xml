@@ -7,153 +7,208 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/ch_desc_backgruond"
-    android:orientation="vertical" >
+    android:orientation="vertical">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/l_constr"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".CharacterDetails"
-        android:padding="5dp"
-        android:orientation="vertical">
+        android:layout_height="wrap_content">
 
-        <LinearLayout
-            android:layout_width="match_parent"
+        <ImageView
+            android:id="@+id/ch_photo_img"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@id/ch_name_desc"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/ch_name_desc"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:fontFamily="serif"
+            android:text="Name Surname"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toTopOf="@+id/ch_screen_border"
+            app:layout_constraintTop_toBottomOf="@id/ch_photo_img"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:autoSizeMaxTextSize="45sp"
+            app:autoSizeMinTextSize="10sp"
+            app:autoSizeTextType="uniform"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"/>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/ch_right_margin03"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.97" />
 
-            <!--549dp-->
-            <ImageView
-                android:id="@+id/ch_photo_img"
-                android:layout_width="match_parent"
-                android:layout_height="549dp"
-                tools:srcCompat="@tools:sample/avatars"
-                android:contentDescription="TODO" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/ch_screen_border"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.5" />
 
-            <!-- 51dp x2 -->
-            <TextView
-                android:id="@+id/ch_name_desc"
-                android:layout_width="match_parent"
-                android:layout_height="102dp"
-                android:fontFamily="serif"
-                android:textColor="@color/white"
-                android:text="Name Surname"
-                android:gravity="center_horizontal"
-                android:paddingTop="15dp"
-                android:paddingLeft="8dp"
-                android:paddingRight="8dp"
-                app:autoSizeTextType="uniform"
-                app:autoSizeMinTextSize="24sp"
-                app:autoSizeMaxTextSize="45sp" />
-        </LinearLayout>
+        <ImageView
+            android:id="@+id/ch_status_img"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/ch_nickname_img"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toStartOf="@+id/ch_status_img_right"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@+id/ch_status_img_left"
+            app:layout_constraintTop_toBottomOf="@+id/ch_name_desc"
+            app:srcCompat="@drawable/ch_status_alive_icon" />
 
-        <!-- 549dp + 5dp-->
-        <TableLayout
-            android:layout_width="match_parent"
-            android:layout_height="549dp"
-            android:layout_marginTop="5dp">
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/ch_status_img_left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.4" />
 
-            <!--status-->
-            <TableRow
-                android:gravity="center" >
-                <ImageView
-                    android:id="@+id/ch_status_img"
-                    android:layout_width="wrap_content"
-                    android:layout_height="70dp"
-                    app:srcCompat="@drawable/ch_status_unknown_dead_icon" />
-            </TableRow>
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/ch_status_img_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.6" />
 
-            <!--nickname-->
-            <TableRow
-                android:paddingStart="40dp"
-                android:layout_marginTop="20dp"
-                android:gravity="center_vertical" >
-                <ImageView
-                    android:id="@+id/ch_nickname_img"
-                    app:srcCompat="@drawable/ch_nickname_icon" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/ch_left_margin05"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.05" />
 
-                <TextView
-                    android:id="@+id/ch_nickname_desc"
-                    android:textSize="30sp"
-                    android:fontFamily="serif"
-                    android:textColor="@color/white"
-                    android:text="Nickname"
-                    app:autoSizeTextType="uniform"
-                    app:autoSizeMinTextSize="30sp"
-                    app:autoSizeMaxTextSize="38sp"
-                    android:layout_marginStart="30dp" />
-            </TableRow>
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/ch_icons_right30"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.30" />
 
-            <!--B-day-->
-            <TableRow
-                android:paddingStart="40dp"
-                android:layout_marginTop="20dp"
-                android:gravity="center_vertical" >
-                <ImageView
-                    android:id="@+id/ch_born_img"
-                    app:srcCompat="@drawable/ch_born_icon" />
+        <ImageView
+            android:id="@+id/ch_nickname_img"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/ch_portrayed_img"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toStartOf="@+id/ch_icons_right30"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@+id/ch_left_margin05"
+            app:layout_constraintTop_toBottomOf="@+id/ch_status_img"
+            app:srcCompat="@drawable/ch_nickname_icon" />
+        <TextView
+            android:id="@+id/ch_nickname_desc"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:fontFamily="serif"
+            android:text="Nickname"
+            android:textColor="@color/white"
+            android:gravity="center_vertical"
+            app:layout_constraintBottom_toBottomOf="@+id/ch_nickname_img"
+            app:layout_constraintStart_toStartOf="@+id/ch_desc_left_margin"
+            app:layout_constraintTop_toTopOf="@+id/ch_nickname_img"
+            app:layout_constraintEnd_toStartOf="@+id/ch_right_margin03"
+            app:autoSizeMaxTextSize="30sp"
+            app:autoSizeMinTextSize="12sp"
+            app:autoSizeTextType="uniform" />
 
-                <TextView
-                    android:id="@+id/ch_born_desc"
-                    android:fontFamily="serif"
-                    android:textColor="@color/white"
-                    android:textSize="30sp"
-                    android:text="20-01-2008"
-                    android:layout_marginStart="30dp"/>
-            </TableRow>
+        <ImageView
+            android:id="@+id/ch_portrayed_img"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/ch_born_img"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toStartOf="@+id/ch_icons_right30"
+            app:layout_constraintStart_toStartOf="@+id/ch_left_margin05"
+            app:layout_constraintTop_toBottomOf="@+id/ch_nickname_img"
+            app:srcCompat="@drawable/ch_portrayed_icon" />
+        <TextView
+            android:id="@+id/ch_portrayed_desc"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:fontFamily="serif"
+            android:text="Portrayed"
+            android:textColor="@color/white"
+            android:gravity="center_vertical"
+            app:layout_constraintBottom_toBottomOf="@+id/ch_portrayed_img"
+            app:layout_constraintStart_toStartOf="@+id/ch_desc_left_margin"
+            app:layout_constraintTop_toTopOf="@+id/ch_portrayed_img"
+            app:layout_constraintEnd_toStartOf="@+id/ch_right_margin03"
+            app:autoSizeMaxTextSize="30sp"
+            app:autoSizeMinTextSize="12sp"
+            app:autoSizeTextType="uniform"/>
 
-            <!--portrayed-->
-            <TableRow
-                android:paddingStart="40dp"
-                android:layout_marginTop="20dp"
-                android:gravity="center_vertical" >
-                <ImageView
-                    android:id="@+id/ch_portrayed_img"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:srcCompat="@drawable/ch_portrayed_icon" />
+        <ImageView
+            android:id="@+id/ch_born_img"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/ch_occupation_img"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toStartOf="@+id/ch_icons_right30"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@+id/ch_left_margin05"
+            app:layout_constraintTop_toBottomOf="@+id/ch_portrayed_img"
+            app:srcCompat="@drawable/ch_born_icon" />
+        <TextView
+            android:id="@+id/ch_born_desc"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:fontFamily="serif"
+            android:text="10-10-2010"
+            android:textColor="@color/white"
+            android:gravity="center_vertical"
+            app:layout_constraintBottom_toBottomOf="@+id/ch_born_img"
+            app:layout_constraintStart_toStartOf="@+id/ch_desc_left_margin"
+            app:layout_constraintTop_toTopOf="@+id/ch_born_img"
+            app:layout_constraintEnd_toStartOf="@+id/ch_right_margin03"
+            app:autoSizeMaxTextSize="30sp"
+            app:autoSizeMinTextSize="12sp"
+            app:autoSizeTextType="uniform"/>
 
-                <TextView
-                    android:id="@+id/ch_portrayed_desc"
-                    android:fontFamily="serif"
-                    android:textColor="@color/white"
-                    android:textSize="30sp"
-                    android:text="Portrayed"
-                    android:layout_marginStart="30dp"/>
-            </TableRow>
+        <ImageView
+            android:id="@+id/ch_occupation_img"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toStartOf="@+id/ch_icons_right30"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@+id/ch_left_margin05"
+            app:layout_constraintTop_toBottomOf="@+id/ch_born_img"
+            app:srcCompat="@drawable/ch_occupation_icon" />
+        <TextView
+            android:id="@+id/ch_occupation_desc"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:fontFamily="serif"
+            android:text="Occupation"
+            android:textColor="@color/white"
+            android:gravity="center_vertical"
+            app:layout_constraintBottom_toBottomOf="@+id/ch_occupation_img"
+            app:layout_constraintStart_toStartOf="@+id/ch_desc_left_margin"
+            app:layout_constraintTop_toTopOf="@+id/ch_occupation_img"
+            app:layout_constraintEnd_toStartOf="@+id/ch_right_margin03"
+            app:autoSizeMaxTextSize="30sp"
+            app:autoSizeMinTextSize="12sp"
+            app:autoSizeTextType="uniform" />
 
-            <!--occupation-->
-            <TableRow
-                android:paddingLeft="40dp"
-                android:gravity="center_vertical"
-                android:layout_marginTop="20dp" >
-                <ImageView
-                    android:id="@+id/ch_occupation_img"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:srcCompat="@drawable/ch_occupation_icon" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/ch_desc_left_margin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.35" />
 
-                <TextView
-                    android:id="@+id/ch_occupation_desc"
-                    android:layout_width="240dp"
-                    android:layout_height="70dp"
-                    android:textSize="30sp"
-                    android:fontFamily="serif"
-                    android:textColor="@color/white"
-                    android:text="Occupation"
-                    android:paddingTop="10dp"
-                    android:layout_marginStart="30dp"
-                    app:autoSizeTextType="uniform"
-                    app:autoSizeMinTextSize="12sp"
-                    app:autoSizeMaxTextSize="30sp"/>
-            </TableRow>
-
-            <!--appearance-->
-            <TableRow>
-
-            </TableRow>
-
-        </TableLayout>
-
-    </LinearLayout>
-
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
