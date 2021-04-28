@@ -6,6 +6,7 @@ import android.graphics.Insets
 import android.os.Build
 import android.os.Bundle
 import android.util.DisplayMetrics
+import android.view.View
 import android.view.ViewGroup
 import android.view.WindowInsets
 import android.widget.ImageView
@@ -13,15 +14,20 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.bb_app.const.Const
 import com.example.bb_app.models.Character
+import com.google.gson.GsonBuilder
 import com.squareup.picasso.Picasso
+import okhttp3.*
+import java.io.IOException
 import java.io.Serializable
 
 
 class CharacterDetails : AppCompatActivity() {
+    private val client = OkHttpClient()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_character_details)
-        setUp()
+        setUp(getCharacter())
     }
 
     private fun getRealScreenHeight(activity: Activity): Int {
@@ -39,9 +45,7 @@ class CharacterDetails : AppCompatActivity() {
         }
     }
 
-    private fun setUp() {
-        val character: Character = getCharacter()
-
+    private fun setUp(character: Character) {
         val characterImage: ImageView = findViewById(R.id.ch_photo_img)
         val characterName: TextView = findViewById(R.id.ch_name_desc)
 
@@ -87,5 +91,26 @@ class CharacterDetails : AppCompatActivity() {
             "Presumed dead" -> R.drawable.ch_status_unknown_dead_icon
             else -> R.drawable.ch_status_unknown_icon
         }
+    }
+
+    fun detailsDrawCharacter(view: View) {
+        val request = Request.Builder()
+                .url("https://www.breakingbadapi.com/api/character/random")
+                .build()
+
+        client.newCall(request).enqueue(object : Callback {
+            override fun onFailure(call: Call, e: IOException) {}
+            override fun onResponse(call: Call, response: Response) {
+                val body = response.body()?.string()
+                val gson = GsonBuilder().create()
+                val characters: Array<Character> = gson.fromJson(
+                        body,
+                        Array<Character>::class.java
+                )
+                runOnUiThread {
+                    setUp(characters[0])
+                }
+            }
+        })
     }
 }
