@@ -16,4 +16,9 @@ class MainActivity : AppCompatActivity() {
         val intent = Intent(this, CharacterList::class.java)
         startActivity(intent)
     }
+
+    fun openEpisodeList(view: View) {
+        val intent = Intent(this, SeasonList::class.java)
+        startActivity(intent)
+    }
 }

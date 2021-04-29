@@ -12,11 +12,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".CharacterDetails"
-            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"/>
+        <activity android:name=".SeasonList"></activity>
+        <activity
+            android:name=".CharacterDetails"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
         <activity
             android:name=".CharacterList"
-            android:label="@string/title_activity_character_list"/>
+            android:label="@string/title_activity_character_list" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

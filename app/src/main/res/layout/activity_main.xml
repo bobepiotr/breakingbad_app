@@ -72,7 +72,8 @@
         android:background="@drawable/bb_button"
         android:layout_marginTop="10dp"
         android:textAlignment="viewStart"
-        android:paddingLeft="20dp"/>
+        android:paddingLeft="20dp"
+        android:onClick="openEpisodeList"/>
 
     <Button
         android:id="@+id/random_quote_button"
