@@ -8,9 +8,10 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bb_app.R
 import com.example.bb_app.models.Character
+import com.example.bb_app.models.Season
 
 class SeasonsAdapter(
-    private val seasons: List<String>
+    private val seasons: List<Season>
                         ): RecyclerView.Adapter<SeasonsAdapter.CustomViewHolder>() {
     private lateinit var clickListener: ClickListener
 
@@ -26,7 +27,7 @@ class SeasonsAdapter(
     }
 
     override fun onBindViewHolder(holder: CustomViewHolder, position: Int) {
-        holder.seasonName.text = seasons[position]
+        holder.seasonName.text = seasons[position].name
         holder.view.setOnClickListener(View.OnClickListener {
             clickListener.onItemClick(position)
         })
