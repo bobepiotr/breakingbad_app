@@ -37,7 +37,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="serif"
-            android:text="episode #"
+            android:text="   episode #"
             android:textColor="@color/white"
             android:textSize="21sp" />
     </LinearLayout>

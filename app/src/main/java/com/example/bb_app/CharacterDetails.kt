@@ -108,6 +108,7 @@ class CharacterDetails : AppCompatActivity() {
                         Array<Character>::class.java
                 )
                 runOnUiThread {
+                    characters[0].fixCharacter()
                     setUp(characters[0])
                 }
             }

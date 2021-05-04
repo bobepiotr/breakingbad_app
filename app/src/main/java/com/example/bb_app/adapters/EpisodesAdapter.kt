@@ -20,7 +20,7 @@ class EpisodesAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CustomViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-        val itemLayout = layoutInflater.inflate(R.layout.character_item, parent, false)
+        val itemLayout = layoutInflater.inflate(R.layout.episode_item, parent, false)
 
         return CustomViewHolder(itemLayout)
     }
@@ -29,7 +29,7 @@ class EpisodesAdapter(
         val episode: Episode = episodes[position]
 
         holder.titleText.text = episode.title
-        holder.episodeText.text = episode.episode
+        holder.episodeText.text = "   Episode "+episode.episode
         holder.view.setOnClickListener(View.OnClickListener {
             clickListener.onItemClick(position)
         })

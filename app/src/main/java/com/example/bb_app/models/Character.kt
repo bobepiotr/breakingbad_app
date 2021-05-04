@@ -16,7 +16,7 @@ import java.io.Serializable
 data class Character(
         val char_id: Int,
         val name: String,
-        val birthday: String,
+        var birthday: String,
         val occupation: List<String>,
         val img: String,
         val status: String,
@@ -24,4 +24,13 @@ data class Character(
         val appearance: List<Int>,
         val portrayed: String,
         val category: String
-): Serializable
+): Serializable {
+
+        fun fixCharacter() {
+                birthday = when {
+                        birthday.isNullOrEmpty() -> {"Unknown"}
+                        birthday.length > 9 -> { birthday.substring(0, 10)}
+                        else -> {birthday}
+                }
+        }
+}

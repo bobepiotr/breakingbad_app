@@ -36,36 +36,15 @@ class SeasonList : AppCompatActivity() {
                 Season("Season 5"))
         recyclerView.adapter = SeasonsAdapter(seasonList)
 
-        run()
-    }
-
-    private fun run() {
-        val url = "https://www.breakingbadapi.com/api/episodes"
-        val request = Request.Builder()
-                .url(url)
-                .build()
-
-        client.newCall(request).enqueue(object : Callback {
-            override fun onFailure(call: Call, e: IOException) {}
-            override fun onResponse(call: Call, response: Response) {
-                val body = response.body()?.string()
-                val gson = GsonBuilder().create()
-                val episodes: Array<Episode> = gson.fromJson(
-                        body,
-                        Array<Episode>::class.java
-                )
-                runOnUiThread {
-                    (recyclerView.adapter as SeasonsAdapter).setOnItemClickListener(object: SeasonsAdapter.ClickListener{
-                        override fun onItemClick(position: Int) {
-                            openEpisodesList(position + 1)
-                        }
-                    })
-                }
+        (recyclerView.adapter as SeasonsAdapter).setOnItemClickListener(object: SeasonsAdapter.ClickListener{
+            override fun onItemClick(position: Int) {
+                openEpisodesList(position + 1)
             }
         })
     }
+
     fun drawEpisode(view: View) {
-        Toast.makeText(applicationContext, "Random episode ...", Toast.LENGTH_SHORT).show()
+        Toast.makeText(applicationContext, "Random season ...", Toast.LENGTH_SHORT).show()
     }
 
     private fun openEpisodesList(seasonNumber: Int) {

@@ -69,7 +69,8 @@ class CharacterList : AppCompatActivity() {
                         Array<Character>::class.java
                 )
                 runOnUiThread {
-                    openDetailsActivity(fixCharacter(characters[0]))
+                    characters[0].fixCharacter()
+                    openDetailsActivity(characters[0])
                 }
             }
         })
@@ -81,22 +82,5 @@ class CharacterList : AppCompatActivity() {
         bundle.putSerializable(Const.CHARACTER_KEY, character)
         intent.putExtras(bundle)
         startActivity(intent)
-    }
-
-    private fun fixCharacter(ch: Character): Character {
-        if (ch.birthday.isNullOrEmpty()) {
-            return Character(ch.char_id, ch.name, "Unknown", ch.occupation,
-                    ch.img, ch.status, ch.nickname,
-                    ch.appearance, ch.portrayed, ch.category)
-        }
-        //"birthday":"1958-09-07T00:00:00.000Z"
-        else if (ch.birthday.length > 9) {
-            return Character(ch.char_id, ch.name, ch.birthday.substring(0, 10), ch.occupation,
-                    ch.img, ch.status, ch.nickname,
-                    ch.appearance, ch.portrayed, ch.category)
-        }
-        else {
-            return ch
-        }
     }
 }

@@ -8,15 +8,18 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bb_app.adapters.CharactersAdapter
 import com.example.bb_app.adapters.EpisodesAdapter
+import com.example.bb_app.const.Const
 import com.example.bb_app.models.Character
 import com.example.bb_app.models.Episode
 import com.google.gson.GsonBuilder
 import okhttp3.*
 import java.io.IOException
+import java.io.Serializable
 
 class EpisodeList : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
     private val client: OkHttpClient = OkHttpClient()
+    private var seasonNumber: Int? = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,6 +27,9 @@ class EpisodeList : AppCompatActivity() {
 
         recyclerView = findViewById(R.id.ep_rec_view)
         recyclerView.layoutManager = LinearLayoutManager(this)
+
+        seasonNumber = getSeasonNumber()
+        run()
     }
 
     private fun run() {
@@ -42,11 +48,12 @@ class EpisodeList : AppCompatActivity() {
                 )
 
                 runOnUiThread {
-                    recyclerView.adapter = EpisodesAdapter(episodes.toList())
+                    val filteredEpisodes = episodes.filter {((it.season.trim().toInt() == seasonNumber) and (it.series == "Breaking Bad"))}
+                    recyclerView.adapter = EpisodesAdapter(filteredEpisodes.toList())
                     (recyclerView.adapter as EpisodesAdapter).setOnItemClickListener(object:
                         EpisodesAdapter.ClickListener{
                         override fun onItemClick(position: Int) {
-                            openDetailsActivity(episodes[position])
+                            openDetailsActivity(filteredEpisodes[position])
                         }
                     })
                 }
@@ -55,10 +62,16 @@ class EpisodeList : AppCompatActivity() {
     }
 
     fun drawEpisode(view: View) {
-        Toast.makeText(applicationContext, "Random episode", Toast.LENGTH_SHORT).show()
+        Toast.makeText(applicationContext, "Random episode ...", Toast.LENGTH_SHORT).show()
     }
 
-    fun openDetailsActivity(episode: Episode) {
+    private fun openDetailsActivity(episode: Episode) {
+        Toast.makeText(applicationContext, "Episode details ...", Toast.LENGTH_SHORT).show()
+    }
 
+    private fun getSeasonNumber(): Int? {
+        val bundle: Bundle? = intent.extras
+        val sesaonNumber: Int? = bundle?.getInt(Const.SEASON_NUMBER_KEY)
+        return sesaonNumber
     }
 }
