@@ -1,5 +1,6 @@
 package com.example.bb_app
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -8,6 +9,7 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bb_app.adapters.SeasonsAdapter
+import com.example.bb_app.const.Const
 import com.example.bb_app.models.Episode
 import com.example.bb_app.models.Season
 import com.google.gson.GsonBuilder
@@ -55,16 +57,7 @@ class SeasonList : AppCompatActivity() {
                 runOnUiThread {
                     (recyclerView.adapter as SeasonsAdapter).setOnItemClickListener(object: SeasonsAdapter.ClickListener{
                         override fun onItemClick(position: Int) {
-                            Toast.makeText(applicationContext, "Season ${position+ 1} episodes", Toast.LENGTH_SHORT).show()
-                            val filteredEpisodes = episodes.filter {
-                                ((it.season.trim().toInt() == position + 1) and
-                                        (it.series == "Breaking Bad"))
-                            }
-                            Log.d("********Season List", "Season ${position + 1}")
-                            Log.d("********Season List", "Episodes amount ${filteredEpisodes.size}")
-                            for (e in filteredEpisodes) {
-                                Log.d("********Season List", "Episode title ${e.title}")
-                            }
+                            openEpisodesList(position + 1)
                         }
                     })
                 }
@@ -73,5 +66,13 @@ class SeasonList : AppCompatActivity() {
     }
     fun drawEpisode(view: View) {
         Toast.makeText(applicationContext, "Random episode ...", Toast.LENGTH_SHORT).show()
+    }
+
+    private fun openEpisodesList(seasonNumber: Int) {
+        val intent: Intent = Intent(applicationContext, EpisodeList::class.java)
+        val bundle: Bundle = Bundle()
+        bundle.putInt(Const.SEASON_NUMBER_KEY, seasonNumber)
+        intent.putExtras(bundle)
+        startActivity(intent)
     }
 }
