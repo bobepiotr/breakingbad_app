@@ -9,12 +9,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bb_app.adapters.SeasonsAdapter
 import com.example.bb_app.models.Episode
+import com.example.bb_app.models.Season
 import com.google.gson.GsonBuilder
 import okhttp3.*
 import java.io.IOException
 
 class SeasonList : AppCompatActivity() {
-    private var recyclerView: RecyclerView = findViewById(R.id.se_rec_view)
+    private lateinit var recyclerView: RecyclerView
     private val client: OkHttpClient = OkHttpClient()
 
 
@@ -22,9 +23,15 @@ class SeasonList : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_season_list)
 
+        recyclerView = findViewById(R.id.se_rec_view)
         recyclerView.layoutManager = LinearLayoutManager(this)
 
-        val seasonList: List<String> = listOf("Season 1", "Season 2", "Season 3", "Season 4", "Season 5")
+        val seasonList: List<Season> = listOf(
+                Season("Season 1"),
+                Season("Season 2"),
+                Season("Season 3"),
+                Season("Season 4"),
+                Season("Season 5"))
         recyclerView.adapter = SeasonsAdapter(seasonList)
 
         run()
@@ -52,22 +59,18 @@ class SeasonList : AppCompatActivity() {
                             val filteredEpisodes = episodes.filter {
                                 ((it.season.trim().toInt() == position + 1) and
                                         (it.series == "Breaking Bad"))
-
                             }
                             Log.d("********Season List", "Season ${position + 1}")
                             Log.d("********Season List", "Episodes amount ${filteredEpisodes.size}")
                             for (e in filteredEpisodes) {
                                 Log.d("********Season List", "Episode title ${e.title}")
                             }
-
                         }
                     })
                 }
             }
         })
     }
-
-
     fun drawEpisode(view: View) {
         Toast.makeText(applicationContext, "Random episode ...", Toast.LENGTH_SHORT).show()
     }
