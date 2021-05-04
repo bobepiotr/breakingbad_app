@@ -1,91 +1,119 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:background="@color/bb_background"
     android:gravity="center_horizontal"
-    tools:context=".MainActivity"
-    android:background="@color/bb_background" >
+    android:orientation="vertical"
+    tools:context=".MainActivity">
 
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="225dp"
+        android:layout_height="177dp"
+        app:layout_constraintBottom_toBottomOf="@id/logo_buttons"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.185"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/breakingbadlogo" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="25dp">
-
-        <ImageView
-            android:id="@+id/imageView5"
-            android:layout_width="225dp"
-            android:layout_height="177dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.185"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/breakingbadlogo" />
-
-        <TextView
-            android:id="@+id/textView4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="serif"
-            android:text="App"
-            android:textAllCaps="false"
-            android:textColor="#528644"
-            android:textSize="53sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.864"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        android:fontFamily="serif"
+        android:text="App"
+        android:textAllCaps="false"
+        android:textColor="#528644"
+        android:textSize="53sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/logo_buttons"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.758"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.814" />
 
     <Button
         android:id="@+id/characters_button"
-        android:layout_width="300dp"
+        android:layout_width="0dp"
         android:layout_height="100dp"
-        android:text="@string/characters_btn_txt"
         android:background="@drawable/bb_button"
-        android:onClick="openCharacterList"
+        android:drawableStart="@drawable/heisenberg"
         android:fontFamily="serif"
-        android:textSize="35sp"
-        android:textColor="@color/white"
+        android:onClick="openCharacterList"
+        android:paddingStart="20dp"
+        android:text="@string/characters_btn_txt"
+        android:textAlignment="viewStart"
         android:textAllCaps="false"
-        android:layout_marginTop="20dp"
-        android:drawableLeft="@drawable/heisenberg"
-        android:paddingLeft="20dp"
-        android:textAlignment="viewStart"/>
+        android:textColor="@color/white"
+        android:textSize="35sp"
+        app:layout_constraintBottom_toTopOf="@+id/episodes_button"
+        app:layout_constraintEnd_toStartOf="@+id/buttons_right"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/buttons_left"
+        app:layout_constraintTop_toBottomOf="@+id/logo_buttons" />
 
     <Button
         android:id="@+id/episodes_button"
-        android:layout_width="300dp"
+        android:layout_width="0dp"
         android:layout_height="100dp"
-        android:text="@string/episodes_btn_txt"
-        android:fontFamily="serif"
-        android:textSize="35sp"
-        android:textColor="@color/white"
-        android:textAllCaps="false"
         android:background="@drawable/bb_button"
-        android:layout_marginTop="10dp"
+        android:fontFamily="serif"
+        android:paddingStart="20dp"
+        android:onClick="openEpisodeList"
+        android:text="@string/episodes_btn_txt"
         android:textAlignment="viewStart"
-        android:paddingLeft="20dp"
-        android:onClick="openEpisodeList"/>
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="35sp"
+        app:layout_constraintBottom_toTopOf="@+id/random_quote_button"
+        app:layout_constraintEnd_toStartOf="@+id/buttons_right"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/buttons_left"
+        app:layout_constraintTop_toBottomOf="@+id/characters_button" />
 
     <Button
         android:id="@+id/random_quote_button"
-        android:layout_width="300dp"
+        android:layout_width="0dp"
         android:layout_height="100dp"
-        android:text="@string/r_quote_btn_txt"
-        android:fontFamily="serif"
-        android:textSize="35sp"
-        android:textColor="@color/white"
-        android:textAllCaps="false"
         android:background="@drawable/bb_button"
-        android:layout_marginTop="10dp"
+        android:fontFamily="serif"
+        android:paddingStart="20dp"
+        android:text="@string/r_quote_btn_txt"
         android:textAlignment="viewStart"
-        android:paddingLeft="20dp"/>
-</LinearLayout>
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="35sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/buttons_right"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/buttons_left"
+        app:layout_constraintTop_toBottomOf="@+id/episodes_button" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/logo_buttons"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.4" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/buttons_left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.15" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/buttons_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.85" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
