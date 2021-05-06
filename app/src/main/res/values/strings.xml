@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">bb_app</string>
+    <string name="app_name">Breaking Bad App</string>
     <string name="greetings">Hello World!</string>
     <string name="counter">Button clicked 0 times</string>
     <string name="click_me">Click me!</string>

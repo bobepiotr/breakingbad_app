@@ -16,20 +16,20 @@ import java.io.IOException
 
 class CharacterList : AppCompatActivity() {
     private val client = OkHttpClient()
-    private var recyclerView: RecyclerView? = null
+    private lateinit var recyclerView: RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_character_list)
 
         recyclerView = findViewById(R.id.recViewChars)
-        recyclerView?.layoutManager = LinearLayoutManager(this)
-        run("https://www.breakingbadapi.com/api/characters")
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        run()
     }
 
-    private fun run(url: String) {
+    private fun run() {
         val request = Request.Builder()
-            .url(url)
+            .url("https://www.breakingbadapi.com/api/characters")
             .build()
 
         client.newCall(request).enqueue(object : Callback {
@@ -43,8 +43,8 @@ class CharacterList : AppCompatActivity() {
                 )
 
                 runOnUiThread {
-                    recyclerView?.adapter = CharactersAdapter(characters.toList())
-                    (recyclerView?.adapter as CharactersAdapter).setOnItemClickListener(object:CharactersAdapter.ClickListener{
+                    recyclerView.adapter = CharactersAdapter(characters.toList())
+                    (recyclerView.adapter as CharactersAdapter).setOnItemClickListener(object:CharactersAdapter.ClickListener{
                         override fun onItemClick(position: Int) {
                             openDetailsActivity(characters[position])
                         }
