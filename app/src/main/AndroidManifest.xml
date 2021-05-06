@@ -13,11 +13,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".EpisodeDetails"
-            android:label="Episode"/>
+            android:label="@string/title_activity_episode_details"/>
         <activity android:name=".EpisodeList"
-            android:label="Episodes"/>
+            android:label="@string/title_activity_episode_list"/>
         <activity android:name=".SeasonList"
-            android:label="Seasons"/>
+            android:label="@string/title_activity_season_list"/>
         <activity
             android:name=".CharacterDetails"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
@@ -25,7 +25,7 @@
             android:name=".CharacterList"
             android:label="@string/title_activity_character_list" />
         <activity android:name=".MainActivity"
-            android:label="Breaking Bad App">
+            android:label="@string/title_activity_main">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
