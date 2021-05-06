@@ -6,3 +6,9 @@ This is what I have done so far
 | Main menu  | List of characters |
 | ------------- | ------------- |
 | ![](images/main_menu.png)  | ![](images/character_list.png)  |
+| Character details | Character details bottom |
+| ![](images/character_details_1.png)  | ![](images/character_details_2.png)  |
+| List of seasons  | List of episodes |
+| ![](images/season_list.png)  | ![](images/episode_list.png)  |
+| Episode details  | ... |
+| ![](images/episode_details.png)|
