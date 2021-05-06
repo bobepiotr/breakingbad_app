@@ -12,15 +12,20 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".EpisodeList"></activity>
-        <activity android:name=".SeasonList" />
+        <activity android:name=".EpisodeDetails"
+            android:label="Episode"/>
+        <activity android:name=".EpisodeList"
+            android:label="Episodes"/>
+        <activity android:name=".SeasonList"
+            android:label="Seasons"/>
         <activity
             android:name=".CharacterDetails"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
         <activity
             android:name=".CharacterList"
             android:label="@string/title_activity_character_list" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"
+            android:label="Breaking Bad App">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

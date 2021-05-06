@@ -15,6 +15,7 @@ import com.example.bb_app.models.Season
 import com.google.gson.GsonBuilder
 import okhttp3.*
 import java.io.IOException
+import java.util.*
 
 class SeasonList : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
@@ -43,8 +44,14 @@ class SeasonList : AppCompatActivity() {
         })
     }
 
-    fun drawEpisode(view: View) {
-        Toast.makeText(applicationContext, "Random season ...", Toast.LENGTH_SHORT).show()
+    fun drawSeason(view: View) {
+        val intent: Intent = Intent(applicationContext, EpisodeList::class.java)
+        val bundle: Bundle = Bundle()
+        val random: Random = Random()
+        val randomSeasonNumber: Int = random.nextInt(5) + 1
+        bundle.putInt(Const.SEASON_NUMBER_KEY, randomSeasonNumber)
+        intent.putExtras(bundle)
+        startActivity(intent)
     }
 
     private fun openEpisodesList(seasonNumber: Int) {

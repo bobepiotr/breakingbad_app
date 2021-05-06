@@ -1,20 +1,18 @@
 package com.example.bb_app
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.bb_app.adapters.CharactersAdapter
 import com.example.bb_app.adapters.EpisodesAdapter
 import com.example.bb_app.const.Const
-import com.example.bb_app.models.Character
 import com.example.bb_app.models.Episode
 import com.google.gson.GsonBuilder
 import okhttp3.*
 import java.io.IOException
-import java.io.Serializable
+import java.util.*
 
 class EpisodeList : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
@@ -34,7 +32,7 @@ class EpisodeList : AppCompatActivity() {
 
     private fun run() {
         val request = Request.Builder()
-            .url("https://www.breakingbadapi.com/api/episodes")
+            .url("https://www.breakingbadapi.com/api/episodes?series=Breaking+Bad")
             .build()
 
         client.newCall(request).enqueue(object : Callback {
@@ -48,7 +46,7 @@ class EpisodeList : AppCompatActivity() {
                 )
 
                 runOnUiThread {
-                    val filteredEpisodes = episodes.filter {((it.season.trim().toInt() == seasonNumber) and (it.series == "Breaking Bad"))}
+                    val filteredEpisodes = episodes.filter{it.season.trim().toInt() == seasonNumber}
                     recyclerView.adapter = EpisodesAdapter(filteredEpisodes.toList())
                     (recyclerView.adapter as EpisodesAdapter).setOnItemClickListener(object:
                         EpisodesAdapter.ClickListener{
@@ -62,16 +60,40 @@ class EpisodeList : AppCompatActivity() {
     }
 
     fun drawEpisode(view: View) {
-        Toast.makeText(applicationContext, "Random episode ...", Toast.LENGTH_SHORT).show()
+        val request = Request.Builder()
+                .url("https://www.breakingbadapi.com/api/episodes?series=Breaking+Bad")
+                .build()
+
+        client.newCall(request).enqueue(object : Callback {
+            override fun onFailure(call: Call, e: IOException) {}
+            override fun onResponse(call: Call, response: Response) {
+                val body = response.body()?.string()
+                val gson = GsonBuilder().create()
+                val episodes: Array<Episode> = gson.fromJson(
+                        body,
+                        Array<Episode>::class.java
+                )
+
+                runOnUiThread {
+                    val filteredEpisodes = episodes.filter {it.season.trim().toInt() == seasonNumber}
+                    val randomIndex: Int = Random().nextInt(filteredEpisodes.size)
+                    openDetailsActivity(filteredEpisodes[randomIndex])
+                }
+            }
+        })
     }
 
     private fun openDetailsActivity(episode: Episode) {
-        Toast.makeText(applicationContext, "Episode details ...", Toast.LENGTH_SHORT).show()
+        val intent = Intent(applicationContext, EpisodeDetails::class.java)
+        val bundle = Bundle()
+        bundle.putSerializable(Const.EPISODE_KEY, episode)
+        intent.putExtras(bundle)
+        startActivity(intent)
     }
 
     private fun getSeasonNumber(): Int? {
         val bundle: Bundle? = intent.extras
-        val sesaonNumber: Int? = bundle?.getInt(Const.SEASON_NUMBER_KEY)
-        return sesaonNumber
+        val seasonNumber: Int? = bundle?.getInt(Const.SEASON_NUMBER_KEY)
+        return seasonNumber
     }
 }
