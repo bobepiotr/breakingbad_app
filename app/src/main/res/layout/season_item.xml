@@ -11,7 +11,7 @@
         android:id="@+id/season_image"
         android:layout_width="108dp"
         android:layout_height="108dp"
-        android:src="@drawable/avatar"
+        android:src="@drawable/se_list_avatar"
         android:padding="4dp" />
     <TextView
         android:id="@+id/season_name"
