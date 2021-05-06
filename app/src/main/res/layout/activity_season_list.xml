@@ -28,6 +28,6 @@
         android:src="@drawable/bb_draw"
         android:scaleType="center"
         app:maxImageSize="56dp"
-        android:onClick="drawEpisode" />
+        android:onClick="drawSeason" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
