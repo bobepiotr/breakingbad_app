@@ -10,5 +10,5 @@ This is what I have done so far
 | ![](images/character_details_1.png)  | ![](images/character_details_2.png)  |
 | List of seasons  | List of episodes |
 | ![](images/season_list.png)  | ![](images/episode_list.png)  |
-| Episode details  | ... |
-| ![](images/episode_details.png)|
+| Episode details  | Quote details |
+| ![](images/episode_details.png)| ![](images/quote_details.png)
