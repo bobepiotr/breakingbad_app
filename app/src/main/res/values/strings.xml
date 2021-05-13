@@ -16,4 +16,5 @@
     <string name="title_activity_episode_list">Episodes</string>
     <string name="title_activity_episode_details">Episode</string>
     <string name="title_activity_main">Breaking Bad App</string>
+    <string name="title_activity_quote_details">Quote</string>
 </resources>

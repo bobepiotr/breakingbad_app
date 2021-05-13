@@ -6,6 +6,7 @@ import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -21,7 +22,8 @@ class QuoteDetails : AppCompatActivity() {
     private val client: OkHttpClient = OkHttpClient()
     lateinit var quoteText: TextView
     lateinit var authorText: TextView
-    lateinit var photoBackground: ConstraintLayout
+    lateinit var backgroundImage: ImageView
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,30 +31,20 @@ class QuoteDetails : AppCompatActivity() {
 
         quoteText = findViewById(R.id.q_content_desc)
         authorText = findViewById(R.id.q_author_desc)
-        photoBackground = findViewById(R.id.q_background)
+        backgroundImage = findViewById(R.id.q_background_image)
+
 
         getQuote()
     }
 
     private fun setUp(quote: Quote) {
-        photoBackground.setBackgroundResource(R.drawable.ch_desc_backgruond)
         val quo: String = "\"" + quote.quote + "\""
         quoteText.text = quo
         authorText.text = quote.author
     }
 
     private fun setUpBackground(img: String) {
-        Picasso.get().load(img).into(object: com.squareup.picasso.Target {
-            override fun onBitmapLoaded(bitmap: Bitmap?, from: Picasso.LoadedFrom?) {
-                photoBackground.background = BitmapDrawable(applicationContext.resources, bitmap);
-            }
-            override fun onBitmapFailed(e: Exception?, errorDrawable: Drawable?) {
-                Log.d("TAG", "FAILED");
-            }
-            override fun onPrepareLoad(placeHolderDrawable: Drawable?) {
-                Log.d("TAG", "Prepare Load");
-            }
-        })
+        Picasso.get().load(img).into(backgroundImage)
     }
 
     private fun getQuote() {
@@ -69,11 +61,13 @@ class QuoteDetails : AppCompatActivity() {
                         body,
                         Array<Quote>::class.java
                 )
-                runOnUiThread {
-                    setUp(quote[0])
+                if (!quote.isNullOrEmpty()) {
+                    quote[0].fixQuoteAuthor()
+                    runOnUiThread {
+                        setUp(quote[0])
+                    }
+                    getCharacterAndSetupBackground(quote[0].author)
                 }
-
-                getCharacterAndSetupBackground(quote[0].author)
             }
         })
     }

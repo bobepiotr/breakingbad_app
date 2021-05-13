@@ -8,6 +8,19 @@
     tools:context=".QuoteDetails"
     android:background="@color/bb_background" >
 
+    <com.example.bb_app.custom_views.ProportionalImageView
+        android:id="@+id/q_background_image"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
+        android:alpha="0.65"
+        android:drawable="@android:color/transparent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
         android:id="@+id/q_content_desc"
@@ -24,7 +37,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.846" />
+        app:layout_constraintVertical_bias="0.876" />
 
     <TextView
         android:id="@+id/q_author_desc"
