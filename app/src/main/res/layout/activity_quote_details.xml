@@ -81,5 +81,6 @@
         android:scaleType="center"
         app:maxImageSize="56dp"
         android:onClick="drawQuote"
+        android:alpha="0.5"
         />
 </androidx.constraintlayout.widget.ConstraintLayout>
