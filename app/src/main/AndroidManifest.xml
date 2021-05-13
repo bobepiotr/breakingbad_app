@@ -12,22 +12,28 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".EpisodeDetails"
-            android:label="@string/title_activity_episode_details"/>
-        <activity android:name=".EpisodeList"
-            android:label="@string/title_activity_episode_list"/>
-        <activity android:name=".SeasonList"
-            android:label="@string/title_activity_season_list"/>
+        <activity android:name=".QuoteDetails"></activity>
+        <activity
+            android:name=".EpisodeDetails"
+            android:label="@string/title_activity_episode_details" />
+        <activity
+            android:name=".EpisodeList"
+            android:label="@string/title_activity_episode_list" />
+        <activity
+            android:name=".SeasonList"
+            android:label="@string/title_activity_season_list" />
         <activity
             android:name=".CharacterDetails"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
         <activity
             android:name=".CharacterList"
             android:label="@string/title_activity_character_list" />
-        <activity android:name=".MainActivity"
+        <activity
+            android:name=".MainActivity"
             android:label="@string/title_activity_main">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

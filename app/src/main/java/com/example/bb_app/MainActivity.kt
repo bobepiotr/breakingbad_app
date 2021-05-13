@@ -21,4 +21,9 @@ class MainActivity : AppCompatActivity() {
         val intent = Intent(this, SeasonList::class.java)
         startActivity(intent)
     }
+
+    fun openRandomQuote(view: View) {
+        val intent = Intent(this, QuoteDetails::class.java)
+        startActivity(intent)
+    }
 }

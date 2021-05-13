@@ -92,7 +92,8 @@
         app:layout_constraintEnd_toEndOf="@+id/buttons_right"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/buttons_left"
-        app:layout_constraintTop_toBottomOf="@+id/episodes_button" />
+        app:layout_constraintTop_toBottomOf="@+id/episodes_button"
+        android:onClick="openRandomQuote" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/logo_buttons"
